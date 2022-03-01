@@ -28,6 +28,6 @@ class AuthServiceProvider extends ServiceProvider
 
         Passport::routes();
 
-        Passport::loadKeysFrom(__DIR__ . '/../storage/oauth');
+        // Passport::loadKeysFrom(__DIR__ . '/../storage/oauth');
     }
 }
