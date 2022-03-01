@@ -52,6 +52,9 @@ php artisan passport:install
 ```sh
 php artisan serve
 ```
+```sh
+php artisan test
+```
 
 ## API End points
 
