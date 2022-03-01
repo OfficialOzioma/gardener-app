@@ -3,6 +3,13 @@
 
 This is a Laravel API application called gardener for eden junior backend developer recruitment test. Built with Laravel 9
 
+# Documentation
+
+To view the full documentation **[Click here](https://documenter.getpostman.com/view/12234489/UVksLten)**
+
+# FULL URL
+<https://gardenerapi.herokuapp.com/>
+
 # Requirements
 
  1. PHP >= 7.4
@@ -48,7 +55,7 @@ php artisan serve
 
 ## API End points
 
-For a complete documentation of this API visit the documentation page. **[Click here](https://documenter.getpostman.com/view/12234489/UVJcnHCT)**
+For a complete documentation of this API visit the documentation page. **[Click here](https://documenter.getpostman.com/view/12234489/UVksLten)**
 
 > ### Note: `API Bearer token is generated when a customer or gardener is registered` it is required for accessing other end points
 
