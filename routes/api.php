@@ -18,24 +18,22 @@ use App\Http\Controllers\LocationController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 Route::prefix('v1')->group(function () {
     Route::group(['middleware' => ['cors', 'json.response']], function () {
 
         Route::post('customer/register', [CustomerController::class, 'register']);
         Route::post('gardener/register', [GardenerController::class, 'register']);
 
+
         Route::middleware('auth:api')->group(function () {
 
             Route::get('customers', [CustomerController::class, 'getAllCustomers']);
-            // Route::get('customers/{location}', [LocationController::class, 'getLocations']);
+            Route::get('customers/{location}', [CustomerController::class, 'getCustomersByLocation']);
 
             Route::get('locations', [LocationController::class, 'getLocations']);
 
-            // Route::get('gardeners', [GardenerController::class, 'getGardeners']);
-            Route::get('gardeners/{country}', [GardenerController::class, 'getGardeners']);
+            Route::get('gardeners', [GardenerController::class, 'getAllGardeners']);
+            Route::get('gardeners/{country}', [GardenerController::class, 'getGardenersByCountry']);
         });
     });
 });

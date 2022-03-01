@@ -1,14 +1,14 @@
 <?php
- 
- 
+
+
 namespace App\Traits;
- 
+
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Arr;
- 
+
 trait HasResponse
 {
     /**
@@ -25,14 +25,14 @@ trait HasResponse
             'statuscode' => config('eden.code.failed'),
             'message' => $message
         ];
- 
-        if (! empty($data)) {
+
+        if (!empty($data)) {
             $response['data'] = $data;
         }
- 
+
         return Response::json($response, 424);
     }
- 
+
     /**
      * Set success response
      *
@@ -47,14 +47,14 @@ trait HasResponse
             'statuscode' => config('eden.code.success'),
             'message' => $message
         ];
- 
-        if (! empty($data)) {
+
+        if (!empty($data)) {
             $response['data'] = $data;
         }
- 
+
         return Response::json($response);
     }
- 
+
     /**
      * Set success response
      *
@@ -70,14 +70,14 @@ trait HasResponse
             'statuscode' => config('eden.code.success'),
             'message' => $message
         ];
- 
-        if (! empty($data)) {
+
+        if (!empty($data)) {
             $response['data'] = $data;
         }
- 
+
         return Response::json($response);
     }
- 
+
     /**
      * Set success response
      *
@@ -94,8 +94,8 @@ trait HasResponse
             'message' => $message,
         ], (array)$collection));
     }
- 
- 
+
+
     /**
      * Set server error response
      *
@@ -110,20 +110,20 @@ trait HasResponse
                 "{$exception->getMessage()} on line {$exception->getLine()} in {$exception->getFile()}"
             );
         }
- 
+
         $response = [
             'status' => config('eden.status.failed'),
             'statuscode' => config('eden.code.server_error'),
             'message' => $message,
         ];
- 
-        if(config('app.debug')){
+
+        if (config('app.debug')) {
             $response['debug'] = $this->appendDebugData($exception);
         }
- 
+
         return Response::json($response, 500);
     }
- 
+
     /**
      * Append debug data to the response data returned.
      */
@@ -139,7 +139,7 @@ trait HasResponse
             })->all(),
         ];
     }
- 
+
     /**
      * Set not found response
      *
@@ -154,14 +154,14 @@ trait HasResponse
             'statuscode' => config('eden.code.not_found'),
             'message' => $message
         ];
- 
-        if (! empty($data)) {
+
+        if (!empty($data)) {
             $response['data'] = $data;
         }
- 
+
         return Response::json($response, 404);
     }
- 
+
     /**
      * Set not allowed response
      *
@@ -172,18 +172,18 @@ trait HasResponse
     public function notAllowedResponse($message, array $data = []): JsonResponse
     {
         $response = [
-            'status' =>config('eden.status.failed'),
+            'status' => config('eden.status.failed'),
             'statuscode' => config('eden.code.not_allowed'),
             'message' => $message
         ];
- 
-        if (! empty($data)) {
+
+        if (!empty($data)) {
             $response['data'] = $data;
         }
- 
+
         return Response::json($response, 403);
     }
- 
+
     /**
      * Set form validation errors
      *
@@ -199,14 +199,14 @@ trait HasResponse
             'message' => 'Whoops. Validation failed',
             'validationErrors' => $errors,
         ];
- 
-        if (! empty($data)) {
+
+        if (!empty($data)) {
             $response['data'] = $data;
         }
- 
+
         return Response::json($response, 406);
     }
- 
+
     /**
      * Set not exist response
      *
@@ -221,14 +221,14 @@ trait HasResponse
             'statuscode' => config('eden.code.notexist'),
             'message' => $message
         ];
- 
-        if (! empty($data)) {
+
+        if (!empty($data)) {
             $response['data'] = $data;
         }
- 
+
         return Response::json($response, 406);
     }
- 
+
     /**
      * Set exist response
      *
@@ -243,14 +243,14 @@ trait HasResponse
             'statuscode' => config('eden.code.exists'),
             'message' => $message
         ];
- 
-        if (! empty($data)) {
+
+        if (!empty($data)) {
             $response['data'] = $data;
         }
- 
+
         return Response::json($response, 409);
     }
- 
+
     /**
      * Set network error response
      *
@@ -265,15 +265,15 @@ trait HasResponse
             'statuscode' => config('eden.code.network_error'),
             'message' => $message
         ];
- 
-        if (! empty($data)) {
+
+        if (!empty($data)) {
             $response['data'] = $data;
         }
- 
+
         return Response::json($response, 503);
     }
- 
-     /**
+
+    /**
      * Set bad request response
      *
      * @param $message
@@ -287,12 +287,11 @@ trait HasResponse
             'statuscode' => config('eden.code.bad_request'),
             'message' => $message
         ];
- 
-        if (! empty($data)) {
+
+        if (!empty($data)) {
             $response['data'] = $data;
         }
- 
+
         return Response::json($response, 400);
     }
- 
 }

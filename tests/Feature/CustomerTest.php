@@ -60,4 +60,19 @@ class CustomerTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function testgetCustomersByLocation()
+    {
+        $token = $this->getAccessToken();
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+        ])->json('GET', '/api/v1/customers/lagos');
+
+        //Write the response in laravel.log
+        Log::info(1, [$response->getContent()]);
+
+
+        $response->assertStatus(200);
+    }
 }

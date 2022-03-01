@@ -19,6 +19,7 @@ class CustomerResource extends JsonResource
             'fullname' => $this->fullname,
             'email' => $this->email,
             'Gardener' => new GardenerResource($this->whenLoaded('gardener')),
+            'Location' => new LocationResource($this->whenLoaded('location')),
         ];
     }
 }

@@ -77,10 +77,46 @@ class CustomerController extends Controller
             return User::with(['gardener'])->get();
         });
 
-        $response = [
-            'message' => 'All customers',
-            'data' => CustomerResource::collection($customers),
-        ];
+        if (count($customers)) {
+            $response = [
+                'message' => 'All customers',
+                'data' => CustomerResource::collection($customers),
+            ];
+        } else {
+            $response = [
+                'message' => 'Sorry we dont have any customer yet',
+            ];
+        }
+
+        return response($response, 200);
+    }
+
+    public function getCustomersByLocation(Request $request, $location)
+    {
+
+        $customersbylocation = Cache::remember($location, 60, function ()  use ($location) {
+
+            $getlocation = Location::where('location', 'iLIKE', '%' . $location . '%')
+                ->orWhere('country', 'iLIKE', '%' . $location . '%')
+                ->first();
+
+            if ($getlocation) {
+                return User::where('location_id', 'iLIKE', '%' . $getlocation->id . '%')->orWhere('country', 'iLIKE', '%' . $location . '%')->with(['location'])->get();
+            } else {
+                return false;
+            }
+        });
+
+        if ($customersbylocation) {
+            $response = [
+                'message' => 'All customer from ' . strtoupper($location),
+                'data' => CustomerResource::collection($customersbylocation),
+            ];
+        } else {
+            $response = [
+                'message' => 'Sorry, we dont have any customer from ' . strtoupper($location),
+            ];
+        }
 
         return response($response, 200);
     }

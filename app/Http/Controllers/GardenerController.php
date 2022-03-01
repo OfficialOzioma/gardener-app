@@ -64,8 +64,7 @@ class GardenerController extends Controller
         }
     }
 
-
-    public function getGardeners($country)
+    public function getGardenersByCountry($country)
     {
 
         $gardener = Cache::remember($country, '60', fn () => Gardener::where('country', 'iLIKE', '%' . $country . '%')->with('location')->get());
@@ -78,6 +77,24 @@ class GardenerController extends Controller
         } else {
             $response = [
                 'message' => 'Sorry we dont have any gardener from ' . strtoupper($country),
+            ];
+        }
+
+        return response($response, 200);
+    }
+
+    public function getAllGardeners(Request $request)
+    {
+        $gardeners = Cache::remember('AllGardeners', '60', fn () => Gardener::with('location')->get());
+
+        if (count($gardeners)) {
+            $response = [
+                'message' => 'All Gardeners',
+                'data' => GardenerResource::collection($gardeners),
+            ];
+        } else {
+            $response = [
+                'message' => 'Sorry we dont have any gardener yet',
             ];
         }
 
