@@ -34,7 +34,7 @@ To view the full documentation **[Click here](https://documenter.getpostman.com/
 1. Unit Tests for Customer and Gardener
 2. An error log handler
 3. Caching for for all the GET request
-4. You can add other things
+4. database seeder for customers, gardeners and location
 
 ## How to install
 
