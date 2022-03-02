@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Validator;
 
 class GardenerController extends Controller
 {
+    /**
+     *  This method register a  gardener
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -64,6 +71,13 @@ class GardenerController extends Controller
         }
     }
 
+
+    /**
+     *  returns Gardeners by their country
+     *
+     * @param  string  $country
+     * @return array
+     */
     public function getGardenersByCountry($country)
     {
 
@@ -83,7 +97,14 @@ class GardenerController extends Controller
         return response($response, 200);
     }
 
-    public function getAllGardeners(Request $request)
+    /**
+     *  returns all available Gardeners in the system
+     *
+     * @param
+     * @param
+     * @return array
+     */
+    public function getAllGardeners()
     {
         $gardeners = Cache::remember('AllGardeners', '60', fn () => Gardener::with('location')->get());
 

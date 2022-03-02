@@ -22,7 +22,6 @@ class GardenerResource extends JsonResource
             'Location' => new LocationResource($this->whenLoaded('location')),
             'Customer' => CustomerResource::collection($this->whenLoaded('customers')),
             'number of customers' => $this->numberOfCustomers(),
-            // 'number of customers' => new CustomerResource($numberOfCustomers),
         ];
     }
 }

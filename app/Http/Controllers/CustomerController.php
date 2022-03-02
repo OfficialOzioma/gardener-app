@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Validator;
 
 class CustomerController extends Controller
 {
+    /**
+     * This method register a new customer
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -71,10 +78,17 @@ class CustomerController extends Controller
         }
     }
 
-    public function getAllCustomers(Request $request)
+    /**
+     *  This method returns all the customers
+     *  and also cache the response
+     *
+     * @return array
+     */
+
+    public function getAllCustomers()
     {
         $customers = Cache::remember('customers', 60, function () {
-            return User::with(['gardener'])->get();
+            return User::with(['gardener', 'location'])->get();
         });
 
         if (count($customers)) {
@@ -91,7 +105,14 @@ class CustomerController extends Controller
         return response($response, 200);
     }
 
-    public function getCustomersByLocation(Request $request, $location)
+    /**
+     *  Returns customers by their location
+     *
+     * @param string $location
+     * @return array
+     */
+
+    public function getCustomersByLocation($location)
     {
 
         $customersbylocation = Cache::remember($location, 60, function ()  use ($location) {

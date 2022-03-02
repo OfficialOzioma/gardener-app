@@ -8,6 +8,7 @@ This is a Laravel API application called gardener for eden junior backend develo
 To view the full documentation **[Click here](https://documenter.getpostman.com/view/12234489/UVksLten)**
 
 # FULL URL
+
 <https://gardenerapi.herokuapp.com/>
 
 # Requirements
@@ -17,6 +18,23 @@ To view the full documentation **[Click here](https://documenter.getpostman.com/
  3. Postman
  4. git
  5. mysql or postgres
+
+# Features
+
+1. Register a customers
+2. Register a gardener
+3. Get all the customers
+4. Get all customers by their location
+5. Get all the available locations
+6. Get all the Gardeners
+7. Get all gardeners by their country
+
+## Extra Features
+
+1. Unit Tests for Customer and Gardener
+2. An error log handler
+3. Caching for for all the GET request
+4. You can add other things
 
 ## How to install
 

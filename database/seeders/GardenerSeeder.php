@@ -21,60 +21,86 @@ class GardenerSeeder extends Seeder
 
         Gardener::truncate();
 
-        $gardeners = [
-            [
-                'fullname' => $faker->name(),
-                'email' => $faker->unique()->safeEmail(),
-                'location_id' => '1',
-                'country' => 'kenya',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s'),
-            ],
-            [
-                'fullname' => $faker->name(),
-                'email' => $faker->unique()->safeEmail(),
-                'location_id' => '2',
-                'country' => 'kenya',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s'),
-            ],
-            [
-                'fullname' => $faker->name(),
-                'email' => $faker->unique()->safeEmail(),
-                'location_id' => '3',
-                'country' => 'kenya',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s'),
-            ],
+        $gardeners = [];
 
-            [
-                'fullname' => $faker->name(),
-                'email' => $faker->unique()->safeEmail(),
-                'location_id' => '4',
-                'country' => 'Nigeria',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s'),
-            ],
+        for ($i = 1; $i <= 6; $i++) {
+            if ($i >= 4) {
 
-            [
-                'fullname' => $faker->name(),
-                'email' => $faker->unique()->safeEmail(),
-                'location_id' => '5',
-                'country' => 'Nigeria',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s'),
-            ],
+                $gardeners[] = [
+                    'fullname' => $faker->name(),
+                    'email' => $faker->unique()->safeEmail(),
+                    'location_id' => $i,
+                    'country' => 'Nigeria',
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            } else {
 
-            [
-                'fullname' => $faker->name(),
-                'email' => $faker->unique()->safeEmail(),
-                'location_id' => '6',
-                'country' => 'Nigeria',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s'),
-            ],
+                $gardeners[] = [
+                    'fullname' => $faker->name(),
+                    'email' => $faker->unique()->safeEmail(),
+                    'location_id' => $i,
+                    'country' => 'Kenya',
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            }
+        }
 
-        ];
+        // $gardeners = [
+        //     [
+        //         'fullname' => $faker->name(),
+        //         'email' => $faker->unique()->safeEmail(),
+        //         'location_id' => '1',
+        //         'country' => 'kenya',
+        //         'created_at' => date('Y-m-d H:i:s'),
+        //         'updated_at' => date('Y-m-d H:i:s'),
+        //     ],
+        //     [
+        //         'fullname' => $faker->name(),
+        //         'email' => $faker->unique()->safeEmail(),
+        //         'location_id' => '2',
+        //         'country' => 'kenya',
+        //         'created_at' => date('Y-m-d H:i:s'),
+        //         'updated_at' => date('Y-m-d H:i:s'),
+        //     ],
+        //     [
+        //         'fullname' => $faker->name(),
+        //         'email' => $faker->unique()->safeEmail(),
+        //         'location_id' => '3',
+        //         'country' => 'kenya',
+        //         'created_at' => date('Y-m-d H:i:s'),
+        //         'updated_at' => date('Y-m-d H:i:s'),
+        //     ],
+
+        //     [
+        //         'fullname' => $faker->name(),
+        //         'email' => $faker->unique()->safeEmail(),
+        //         'location_id' => '4',
+        //         'country' => 'Nigeria',
+        //         'created_at' => date('Y-m-d H:i:s'),
+        //         'updated_at' => date('Y-m-d H:i:s'),
+        //     ],
+
+        //     [
+        //         'fullname' => $faker->name(),
+        //         'email' => $faker->unique()->safeEmail(),
+        //         'location_id' => '5',
+        //         'country' => 'Nigeria',
+        //         'created_at' => date('Y-m-d H:i:s'),
+        //         'updated_at' => date('Y-m-d H:i:s'),
+        //     ],
+
+        //     [
+        //         'fullname' => $faker->name(),
+        //         'email' => $faker->unique()->safeEmail(),
+        //         'location_id' => '6',
+        //         'country' => 'Nigeria',
+        //         'created_at' => date('Y-m-d H:i:s'),
+        //         'updated_at' => date('Y-m-d H:i:s'),
+        //     ],
+
+        // ];
 
         Gardener::insert($gardeners);
     }
