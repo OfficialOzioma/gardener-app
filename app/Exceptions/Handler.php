@@ -85,10 +85,6 @@ class Handler extends ExceptionHandler
             return $this->notAllowedResponse($e->getMessage());
         }
 
-        // if ($e instanceof ServiceNotAllowedException) {
-        //     return $this->notAllowedResponse($e->getMessage());
-        // }
-
         return $this->serverErrorResponse(__('errors.server_error'), new Exception($e->getMessage()));
     }
 }

@@ -10,6 +10,14 @@ use App\Http\Resources\LocationResource;
 class LocationController extends Controller
 {
 
+    /**
+     *  This method returns all the available locations in the system
+     *
+     * @param
+     * @param
+     * @return array
+     */
+
     public function getLocations()
     {
         $location = Cache::remember('location', '60', fn () => Location::with(['customers'])->get());
